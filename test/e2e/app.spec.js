@@ -38,13 +38,73 @@ describe('End to End Tests', () => {
       expect(headerText).to.equal('Mortgage Calculator');
     }));
 
-    it('should contain an <input> element for the principal', () =>
+  it('should contain an <input> element for the principal', () =>
+  pageObject
+    .evaluate(() => document.querySelector('input[name=principal]').innerText)
+    .then(input => {
+      expect(input).to.not.be.null;
+      expect(input).to.exist;
+    }));
+
+  it('should contain an <input> element for the interest rate', () =>
+  pageObject
+    .evaluate(() => document.querySelector('input[name=interestRate]').innerText)
+    .then(input => {
+      expect(input).to.not.be.null;
+      expect(input).to.exist;
+    }));
+
+  it('should contain an <input> element for the loan term', () =>
+  pageObject
+    .evaluate(() => document.querySelector('input[name=loanTerm]').innerText)
+    .then(input => {
+      expect(input).to.not.be.null;
+      expect(input).to.exist;
+    }));
+
+  it('should contain a <select> element for the period', () =>
+  pageObject
+    .evaluate(() => document.querySelector('select[name=period]').innerText)
+    .then(select => {
+      expect(select).to.not.be.null;
+      expect(select).to.exist;
+    }));  
+
+    it('should contain a <option> element for the period', () =>
     pageObject
-      .evaluate(() => document.querySelector('input').innerText)
-      .then(headerText => {
-        expect(headerText).to.not.be.null;
-        expect(headerText).to.equal('principal');
-    }))
+      .evaluate(() => document.querySelector('option[value="12"]').innerText)
+      .then(option => {
+        expect(option).to.not.be.null;
+        expect(option).to.exist;
+      }))
+
+    it('should contain a <button> with the id of calculate', () =>
+    pageObject
+      .evaluate(() => document.querySelector('button[id=calculate]'))
+      .then(input => expect(input).to.exist)
+   )
+
+   it('should contain a <p> with the id of output', () =>
+    pageObject
+      .evaluate(() => document.querySelector('p[id=output]'))
+      .then(p => expect(p).to.exist)
+    )
+
 
   // This is where your code is going to go
+
+//   it('should correctly calculate mortgage', () =>
+//   pageObject
+//   .wait()
+//   .type('input[name=principal]', 300000)
+//   .type('input[name=interestRate]', 3.75)
+//   .type('input[name=loanTerm]', 30)
+//   .select('select[name=period]', 12)
+//   .click('button#calculate')
+//   .wait('#output')
+//   .evaluate(() => document.querySelector('#output').innerText)
+//   .then((outputText) => {
+//     expect(outputText).to.equal('$1389.35');
+//   })
+// ).timeout(6500);
 })

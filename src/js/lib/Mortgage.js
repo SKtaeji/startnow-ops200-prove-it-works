@@ -35,13 +35,9 @@ class Mortgage {
     
     // this getter should return the result of your monthly payment calculation 
     var actualInterest = interest / 100 / 12;
-    console.log(actualInterest);
     var actualTerm = term * 12;
-    console.log(actualTerm);
     var num = principal * (actualInterest * (Math.pow(1 + actualInterest, actualTerm)));
-    console.log(num);
     var den = (Math.pow(1 + actualInterest, actualTerm) - 1);
-    console.log(den);
     var result = (num / den).toFixed(2);
     return parseFloat(result);
   }
